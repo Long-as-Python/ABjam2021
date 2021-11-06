@@ -9,9 +9,10 @@ namespace PlayerEssentials
     {
         private List<Snapshot> _positions;
         private int maxSecondsToRecord = 10;
-        [SerializeField] private int maxSnapshotPoints;
-        public bool recorderEnabled;
+        [SerializeField] private int maxSnapshotPoints; 
         private Rigidbody2D _rigidbody;
+        [SerializeField] private bool isSleeping;
+        [SerializeField] private int positionsCount;
 
         private void Awake()
         {
@@ -21,10 +22,11 @@ namespace PlayerEssentials
         }
 
         private void FixedUpdate()
-        {
-            if (!recorderEnabled) return;
-                // if (_rigidbody.IsSleeping()) return;
-            
+        { 
+            isSleeping = _rigidbody.IsSleeping();
+            positionsCount = _positions.Count;
+            if (isSleeping) return;
+
             _positions.Add(new Snapshot {Position = transform.position});
             while (_positions.Count > maxSnapshotPoints)
                 _positions.RemoveAt(0);

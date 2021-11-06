@@ -87,5 +87,9 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.15
       objectReference: {fileID: 0}
+    - target: {fileID: 5325623986178326091, guid: 406174732e5f59e44bfbdbdc21ff512d, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 406174732e5f59e44bfbdbdc21ff512d, type: 3}

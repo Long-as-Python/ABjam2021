@@ -7,30 +7,39 @@ namespace PlayerEssentials
 {
     public class PlayerController : MonoBehaviour
     {
-        public UnityEvent Die;
+        public UnityEvent<PlayerController> Die;
 
         private void Start()
         {
-            Die ??= new UnityEvent();
+            Die ??= new UnityEvent<PlayerController>();
         }
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.gameObject.TryGetComponent<Obstacle>(out _))
+            if (other.gameObject.TryGetComponent<Obstacle>(out var obstacle))
             {
+                if (!obstacle.isActiveObstacle) return;
+                obstacle.Deactivate();
+                Debug.Log("player dies");
                 OnDie();
             }
         }
 
         private void OnDie()
         {
-            Die.Invoke();
+            Die.Invoke(this);
         }
 
         public void ActivateControl()
         {
             GetComponent<PlayerMovement>().isControlled = true;
-            GetComponent<SnapshotRecorder>().recorderEnabled = true;
+        }
+
+        public void Deactivate()
+        {
+            GetComponent<PlayerMovement>().isControlled = false;
+            // TODO: change sprite
+            this.gameObject.SetActive(false);
         }
     }
 }

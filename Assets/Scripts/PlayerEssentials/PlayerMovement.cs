@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace PlayerEssentials
@@ -12,15 +13,23 @@ namespace PlayerEssentials
         bool jump = false;
         bool crouch = false;
         public bool isControlled;
+        private Rigidbody2D _rigidBody;
+
+        private void Awake()
+        {
+            _rigidBody = GetComponent<Rigidbody2D>();
+        }
 
         void Update()
         {
             if (!isControlled)
                 return;
             horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
-
+            if (horizontalMove != 0)
+                _rigidBody.isKinematic = false;
             if (Input.GetButtonDown("Jump"))
             {
+                _rigidBody.isKinematic = false;
                 jump = true;
             }
 

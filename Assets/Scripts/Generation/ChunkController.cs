@@ -21,10 +21,14 @@ namespace Generation
             chunksToLoad = Resources.LoadAll<Chunk>("Chunks").ToList();
             obstaclesToLoad = Resources.LoadAll<Obstacle>("Obstacles").ToList();
 
+            // fill pool with chunks
             while (currentChunks.Count < maxLoadedChunksCount)
             {
                 LoadRandomChunk();
             }
+            
+            // move view to the center of the pool
+            transform.position = transform.position - currentChunks[currentChunks.Count / 2].EndPoint.position;
         }
 
         private void LoadChunk(Chunk chunk)
@@ -36,9 +40,6 @@ namespace Generation
                 var lastChunk = currentChunks[currentChunks.Count - 1];
                 loaded.transform.position =
                     lastChunk.EndPoint.position + (loaded.transform.position - loaded.StartPoint.position);
-
-                // TODO: animate with lerp
-                transform.position = transform.position - currentChunks[currentChunks.Count / 2].EndPoint.position;
             }
 
             loaded.InitObstacles(obstaclesToLoad);
@@ -52,10 +53,13 @@ namespace Generation
             Destroy(chunk.gameObject);
         }
 
-        private void LoadRandomChunk()
+        public void LoadRandomChunk()
         {
             var chunk = chunksToLoad.Random();
             LoadChunk(chunk);
+            // cleanup chunks pool 
+            if (currentChunks.Count > maxLoadedChunksCount)
+                DestroyLastChunk();
         }
 
         private void Update()
@@ -63,10 +67,15 @@ namespace Generation
             if (Input.GetKeyDown(KeyCode.G))
             {
                 LoadRandomChunk();
-
-                if (currentChunks.Count > maxLoadedChunksCount)
-                    DestroyLastChunk();
             }
+        }
+
+        public void TryLoadChunk(Chunk target)
+        {
+            var targetChunk = target.gameObject;
+            // generate next chunk after player passes the middle of pool
+            if (currentChunks.Skip(currentChunks.Count / 2).Any(x => x.gameObject.Equals(targetChunk)))
+                LoadRandomChunk();
         }
     }
 }
