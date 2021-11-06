@@ -1,6 +1,7 @@
+using Observable.Abstractions;
 using UnityEngine;
 
-namespace FUGAS.Vendetta
+namespace Observable
 {
     public class PlayerSubject : AbstractObservableSubject
     {

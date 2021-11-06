@@ -1,7 +1,4 @@
-using System.Collections;
-using UnityEngine;
-
-namespace FUGAS.Vendetta
+namespace Observable.Abstractions
 {
     public interface IObserver
     { 

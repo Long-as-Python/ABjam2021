@@ -1,4 +1,4 @@
-namespace FUGAS.Vendetta
+namespace Observable.Abstractions
 {
     public interface IObservableSubject
     { 

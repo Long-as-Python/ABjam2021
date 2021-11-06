@@ -1,7 +1,6 @@
-using System;
 using System.Collections.Generic;
 
-namespace FUGAS.Vendetta
+namespace Observable.Abstractions
 {
     public class AbstractObservableSubject : IObservableSubject
     {

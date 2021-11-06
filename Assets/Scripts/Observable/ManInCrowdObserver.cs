@@ -1,6 +1,7 @@
+using Observable.Abstractions;
 using UnityEngine;
 
-namespace FUGAS.Vendetta
+namespace Observable
 {
     class ManInCrowdObserver : IObserver
     {
