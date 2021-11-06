@@ -15,17 +15,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chunk (1) Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 6324369197111978704, guid: 6a1345f6c73706b478eb29057e4095bd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6324369197111978707, guid: 6a1345f6c73706b478eb29057e4095bd, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6324369197111978707, guid: 6a1345f6c73706b478eb29057e4095bd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6324369197111978707, guid: 6a1345f6c73706b478eb29057e4095bd, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6324369197111978707, guid: 6a1345f6c73706b478eb29057e4095bd, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6324369197111978707, guid: 6a1345f6c73706b478eb29057e4095bd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.15
+      value: -1.764
       objectReference: {fileID: 0}
     - target: {fileID: 6324369197111978707, guid: 6a1345f6c73706b478eb29057e4095bd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.075
+      value: 0.61301
       objectReference: {fileID: 0}
     - target: {fileID: 6324369197111978707, guid: 6a1345f6c73706b478eb29057e4095bd, type: 3}
       propertyPath: m_LocalPosition.z
