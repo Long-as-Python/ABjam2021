@@ -11,16 +11,20 @@ namespace PlayerEssentials
         private int maxSecondsToRecord = 10;
         [SerializeField] private int maxSnapshotPoints;
         public bool recorderEnabled;
+        private Rigidbody2D _rigidbody;
 
         private void Awake()
         {
             _positions = new List<Snapshot>();
             maxSnapshotPoints = (int) Math.Round(maxSecondsToRecord * 1f / Time.fixedDeltaTime);
+            _rigidbody = GetComponent<Rigidbody2D>();
         }
 
         private void FixedUpdate()
         {
             if (!recorderEnabled) return;
+                // if (_rigidbody.IsSleeping()) return;
+            
             _positions.Add(new Snapshot {Position = transform.position});
             while (_positions.Count > maxSnapshotPoints)
                 _positions.RemoveAt(0);

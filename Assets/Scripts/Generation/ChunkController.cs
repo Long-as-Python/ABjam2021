@@ -36,7 +36,7 @@ namespace Generation
                 var lastChunk = currentChunks[currentChunks.Count - 1];
                 loaded.transform.position =
                     lastChunk.EndPoint.position + (loaded.transform.position - loaded.StartPoint.position);
-            
+
                 // TODO: animate with lerp
                 transform.position = transform.position - currentChunks[currentChunks.Count / 2].EndPoint.position;
             }
