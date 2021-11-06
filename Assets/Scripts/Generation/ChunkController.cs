@@ -4,6 +4,7 @@ using UnityEngine;
 public class ChunkController : MonoBehaviour
 {
     [SerializeField] private List<Chunk> chunksToLoad;
+    [SerializeField] private List<Obstacle> obstaclesToLoad;
 
     [SerializeField] private List<Chunk> currentChunks;
     [SerializeField] private int maxLoadedChunksCount;
@@ -15,6 +16,7 @@ public class ChunkController : MonoBehaviour
         var lastChunk = currentChunks[currentChunks.Count - 1];
         loaded.transform.position = lastChunk.EndPoint.position + (loaded.transform.position - loaded.StartPoint.position);
 
+        loaded.InitObstacles(obstaclesToLoad);
         currentChunks.Add(loaded);
     }
 
