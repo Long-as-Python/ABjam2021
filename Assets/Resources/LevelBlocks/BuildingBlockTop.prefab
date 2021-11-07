@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7355760595061429070}
   - component: {fileID: 7791682732453993217}
   m_Layer: 0
-  m_Name: BuildingBlock
+  m_Name: BuildingBlockTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 186495477
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9a551ebd3de5be6488fcb6d7e0015dd7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2af5f20b1eb7c5c4b94c566183c8c3d8, type: 3}
   m_Color: {r: 0.7735849, g: 0.7735849, b: 0.7735849, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -93,7 +93,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2163578804547893864}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5711509b2dd6e6d45be6dd1c93d18135, type: 3}
+  m_Script: {fileID: 11500000, guid: 6c8854fcbe71ce244823f96d960e9ed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!61 &7791682732453993217
@@ -113,7 +113,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.14999999, y: 0.14999999}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

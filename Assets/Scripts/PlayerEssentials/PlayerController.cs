@@ -9,7 +9,8 @@ namespace PlayerEssentials
     {
         public UnityEvent<PlayerController> Die;
         private CharacterController2D _characterController;
-        private void Start()
+
+        private void Awake()
         {
             Die ??= new UnityEvent<PlayerController>();
             _characterController = GetComponent<CharacterController2D>();
@@ -44,9 +45,10 @@ namespace PlayerEssentials
         }
 
         public void TryFlip(Snapshot snap)
-        { 
-            if (_characterController.facingRight != snap.FacingRight)
-                _characterController.Flip();
+        {
+            if (_characterController)
+                if (_characterController.facingRight != snap.FacingRight)
+                    _characterController.Flip();
         }
     }
 }
