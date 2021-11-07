@@ -13,8 +13,9 @@ namespace UI
 
         private void Start()
         {
-            gameManager = FindObjectOfType<GameManager>();
-            events = FindObjectOfType<EventManager>();
+            var root = GameObject.Find("GameRoot");
+            gameManager = root.GetComponent<GameManager>();
+            events = root.GetComponent<EventManager>();
         }
 
         void GameStartClick()
@@ -37,8 +38,8 @@ namespace UI
 
         public void PauseClick()
         {
-            //events.OnButtonClick();
-            //gameManager.PauseGame();
+            events.OnButtonClick();
+            gameManager.PauseGame();
             if (PauseMenu.active == true) PauseMenu.SetActive(false);
             else PauseMenu.SetActive(true);
         }
