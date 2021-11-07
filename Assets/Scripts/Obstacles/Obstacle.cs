@@ -5,7 +5,7 @@ namespace Obstacles
 {
     public class Obstacle : MonoBehaviour
     {
-        public bool isActiveObstacle { get; set; }
+        public bool isActiveObstacle { get; set; } = true;
         //default obstacle
 
         public void Deactivate()
