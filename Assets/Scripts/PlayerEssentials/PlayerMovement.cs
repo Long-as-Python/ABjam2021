@@ -14,10 +14,12 @@ namespace PlayerEssentials
         bool crouch = false;
         public bool isControlled;
         private Rigidbody2D _rigidBody;
+        private Animator _animator;
 
         private void Awake()
         {
             _rigidBody = GetComponent<Rigidbody2D>();
+            _animator = GetComponent<Animator>();
         }
 
         void Update()
