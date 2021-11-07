@@ -28,11 +28,20 @@ namespace PlayerEssentials
                 return;
             horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
             if (horizontalMove != 0)
+            {
+                _animator.SetTrigger("player_run");
                 _rigidBody.isKinematic = false;
+            }
+            else
+            {
+                _animator.SetTrigger("player_idle");
+            }
+
             if (Input.GetButtonDown("Jump"))
             {
                 _rigidBody.isKinematic = false;
                 jump = true;
+                _animator.SetTrigger("player_jump");
             }
 
             if (Input.GetButtonDown("Crouch"))
@@ -42,6 +51,11 @@ namespace PlayerEssentials
             else if (Input.GetButtonUp("Crouch"))
             {
                 crouch = false;
+            }
+
+            if (_rigidBody.velocity.y < 0)
+            {
+                _animator.SetTrigger("player_landing");
             }
         }
 
