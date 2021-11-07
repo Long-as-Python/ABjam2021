@@ -55,3 +55,6 @@ TagManager:
   - name: UI
     uniqueID: 4131462955
     locked: 0
+  - name: Obstacle
+    uniqueID: 704110723
+    locked: 0
