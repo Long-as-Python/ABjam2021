@@ -147,11 +147,15 @@ namespace PlayerEssentials
             if (m_Grounded && jump)
             {
                 // Add a vertical force to the player.
-                m_Grounded = false;
-                m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+                Jump();
             }
         }
 
+        public void Jump()
+        {
+            m_Grounded = false;
+            m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+        }
 
         public void Flip()
         {
