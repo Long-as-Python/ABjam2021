@@ -55,6 +55,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spike_1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8933080669231797690, guid: fea71bd3d0c1e5041b42bc235ac42924, type: 3}
+      propertyPath: immortal
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fea71bd3d0c1e5041b42bc235ac42924, type: 3}
 --- !u!1001 &3121782985580555970
@@ -249,6 +253,10 @@ PrefabInstance:
     - target: {fileID: 4863332846413044495, guid: fea71bd3d0c1e5041b42bc235ac42924, type: 3}
       propertyPath: m_Name
       value: Spike_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8933080669231797690, guid: fea71bd3d0c1e5041b42bc235ac42924, type: 3}
+      propertyPath: immortal
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fea71bd3d0c1e5041b42bc235ac42924, type: 3}
