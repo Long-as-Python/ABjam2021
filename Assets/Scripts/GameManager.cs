@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     private AudioController audioController;
     private EventManager eventManager;
     private IEventPublisher eventPublisher;
-    public GameManager Instance;
+    public GameManager Instance { get; private set; }
 
     private void Awake()
     {
@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
         eventManager.PlayerDie.AddListener(audioController.OnPlayerDie);
         eventManager.PlayerShoot.AddListener(audioController.OnPlayerShoot);
         eventManager.GameRestart.AddListener(audioController.OnGameRestart);
-        eventManager.ButtonClick.AddListener(audioController.ButtonClick); 
+        eventManager.ButtonClick.AddListener(audioController.ButtonClick);
     }
 
     public void StartGame()

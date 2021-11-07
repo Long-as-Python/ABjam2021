@@ -23,9 +23,11 @@ namespace PlayerEssentials
         private bool _freezeCamera;
         private bool canUpdatePlayers;
         private Vector3 _cameraTarget;
+        private GameManager gameManager;
 
         private void Awake()
         {
+            gameManager = GameObject.Find("GameRoot").GetComponent<GameManager>();
         }
 
         private void Start()
@@ -117,7 +119,7 @@ namespace PlayerEssentials
             player.transform.parent = this.transform;
             player.GetComponent<CharacterController2D>().OnLandEvent.AddListener(OnPlayerLanded);
             player.Die.AddListener(ChangeToNextPlayer);
-            player.Die.AddListener(FindObjectOfType<GameManager>().OnPlayerDie);
+            player.Die.AddListener(gameManager.OnPlayerDie);
             player.GetComponent<Rigidbody2D>().isKinematic = true;
             _playersPool.Add(player);
         }
