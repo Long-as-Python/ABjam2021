@@ -2,6 +2,7 @@
 using Events;
 using PlayerEssentials;
 using UnityEngine;
+using Generation;
 
 public class GameManager : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
         eventManager.PlayerShoot.AddListener(audioController.OnPlayerShoot);
         eventManager.GameRestart.AddListener(audioController.OnGameRestart);
         eventManager.ButtonClick.AddListener(audioController.ButtonClick);
+        eventManager.ButtonClick.AddListener(FindObjectOfType<ChunkController>().StartGame);
     }
 
     public void StartGame()

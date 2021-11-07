@@ -20,13 +20,15 @@ namespace Generation
             currentChunks = new List<Chunk>();
             chunksToLoad = Resources.LoadAll<Chunk>("Chunks").ToList();
             obstaclesToLoad = Resources.LoadAll<Obstacle>("Obstacles").ToList();
+        }
 
+        public void StartGame()
+        {
             // fill pool with chunks
             while (currentChunks.Count < maxLoadedChunksCount)
             {
                 LoadRandomChunk();
             }
-            
             // move view to the center of the pool
             transform.position = transform.position - currentChunks[currentChunks.Count / 2].EndPoint.position;
         }

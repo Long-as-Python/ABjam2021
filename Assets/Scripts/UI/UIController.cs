@@ -11,18 +11,22 @@ namespace UI
         private IEventPublisher events;
         public GameObject PauseMenu;
         public GameObject MainMenu;
+        public GameObject GameUI;
 
         private void Start()
         {
             var root = GameObject.Find("GameRoot");
             gameManager = root.GetComponent<GameManager>();
             events = root.GetComponent<EventManager>();
+            PauseMenu.SetActive(false);
         }
 
         public void GameStartClick()
         {
             events.OnButtonClick();
             gameManager.StartGame();
+            MainMenu.SetActive(false);
+            GameUI.SetActive(true);
         }
 
         void GameRestartClick()
@@ -31,10 +35,18 @@ namespace UI
             gameManager.RestartGame();
         }
 
-        void ExitClick()
+        public void ExitGameClick()
         {
             events.OnButtonClick();
             gameManager.ExitGame();
+        }
+
+        public void LeaveGameClick()
+        {
+            events.OnButtonClick();
+            gameManager.ExitGame();
+            MainMenu.SetActive(true);
+            PauseMenu.SetActive(false);
         }
 
         public void PauseClick()
