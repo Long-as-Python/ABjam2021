@@ -44,6 +44,8 @@ namespace PlayerEssentials
 
         [SerializeField] private Transform firePoint;
         [SerializeField] private GameObject daggerPrefab;
+        [SerializeField] private float delay;
+        private float timer;
 
         private void Awake()
         {
@@ -58,6 +60,7 @@ namespace PlayerEssentials
 
         private void FixedUpdate()
         {
+            timer += Time.deltaTime;
             bool wasGrounded = m_Grounded;
             m_Grounded = false;
 
@@ -162,6 +165,11 @@ namespace PlayerEssentials
 
         public void Fire()
         {
+            if (timer < delay)
+                return;
+
+            timer = 0f;
+
             var dagger = Instantiate(daggerPrefab).GetComponent<Dagger>();
             dagger.transform.position = firePoint.position;
             if (facingRight)

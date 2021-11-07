@@ -147,6 +147,7 @@ MonoBehaviour:
       m_Calls: []
   firePoint: {fileID: 510808147520346153}
   daggerPrefab: {fileID: 1732869893790437668, guid: 3e3cb73e3e6e2f2439a71328c22a88c9, type: 3}
+  delay: 0.5
 --- !u!61 &4967461518409004676
 BoxCollider2D:
   m_ObjectHideFlags: 0
