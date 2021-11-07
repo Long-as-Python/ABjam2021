@@ -11,9 +11,12 @@ namespace Obstacles
 
         public void Deactivate()
         {
-            if(!immortal)
+            if (!immortal)
                 isActiveObstacle = false;
-            
+            if (TryGetComponent<Animator>(out var animator))
+            {
+                animator.SetTrigger("on_hit");
+            }
             // TODO: deactivate sprite 
             // this.gameObject.SetActive(false);
         }

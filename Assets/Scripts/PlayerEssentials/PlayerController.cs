@@ -9,11 +9,13 @@ namespace PlayerEssentials
     {
         public UnityEvent<PlayerController> Die;
         private CharacterController2D _characterController;
+        private Animator _animator;
 
         private void Awake()
         {
             Die ??= new UnityEvent<PlayerController>();
             _characterController = GetComponent<CharacterController2D>();
+            _animator = GetComponent<Animator>();
         }
 
         private void OnCollisionEnter2D(Collision2D other)
@@ -29,6 +31,7 @@ namespace PlayerEssentials
 
         private void OnDie()
         {
+            _animator.SetTrigger("player_die");
             Die.Invoke(this);
         }
 
