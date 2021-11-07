@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Cinemachine;
+using Events;
 using Generation;
 using Helpers;
 using UnityEngine;
@@ -116,6 +117,7 @@ namespace PlayerEssentials
             player.transform.parent = this.transform;
             player.GetComponent<CharacterController2D>().OnLandEvent.AddListener(OnPlayerLanded);
             player.Die.AddListener(ChangeToNextPlayer);
+            player.Die.AddListener(FindObjectOfType<GameManager>().OnPlayerDie);
             player.GetComponent<Rigidbody2D>().isKinematic = true;
             _playersPool.Add(player);
         }
