@@ -13,7 +13,7 @@ namespace UI
         {
             cam = Camera.main;
             startPosition = transform.position.x;
-            length = GetComponent<SpriteRenderer>().bounds.size.x ;
+            length = GetComponent<SpriteRenderer>().bounds.size.x;
         }
 
         private void Update()
@@ -24,7 +24,6 @@ namespace UI
 
             if (temp > startPosition + length) startPosition += length;
             else if (temp < startPosition - length) startPosition -= length;
-            
         }
     }
 }

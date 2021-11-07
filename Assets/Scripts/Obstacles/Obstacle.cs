@@ -1,3 +1,4 @@
+using Cinemachine;
 using UnityEngine;
 
 namespace Obstacles
@@ -11,8 +12,8 @@ namespace Obstacles
         {
             isActiveObstacle = false;
             
-            // TODO: deactivate sprite
-            this.gameObject.SetActive(false);
+            // TODO: deactivate sprite 
+            // this.gameObject.SetActive(false);
         }
     }
 }

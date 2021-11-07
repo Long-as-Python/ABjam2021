@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Cinemachine;
 using Generation;
 using Helpers;
 using UnityEngine;
@@ -11,6 +12,7 @@ namespace PlayerEssentials
 {
     public class PlayerPool : MonoBehaviour
     {
+        [SerializeField] private CinemachineVirtualCamera cineCamera;
         public int MaxPlayersInPool = 10;
         private PlayerController _activePlayer;
         private PlayerController _lastPlayer;
@@ -42,11 +44,12 @@ namespace PlayerEssentials
         private void ActivatePlayer(PlayerController player)
         {
             _activePlayer = player;
-            var camera = Camera.main;
-            camera.transform.SetParent(_activePlayer.transform, true);
-            SetCameraTargetDynamic();
+            cineCamera.Follow = _activePlayer.transform;
+            // var camera = Camera.main;
+            // camera.transform.SetParent(_activePlayer.transform, true);
+            //SetCameraTargetDynamic();
             _freezeCamera = true;
-            StartCoroutine(LerpFromTo(camera.transform, camera.transform.position, 1));
+            //StartCoroutine(LerpFromTo(camera.transform, camera.transform.position, 1));
             player.ActivateControl();
         }
 
@@ -79,10 +82,10 @@ namespace PlayerEssentials
             if (whoDied == _activePlayer)
             {
                 canUpdatePlayers = false;
-                _lastPlayer = _playersPool.First(); 
+                _lastPlayer = _playersPool.First();
                 _playersPool.RemoveAt(0);
                 // GeneratePlayer(1);
-                var candidate = _playersPool.First(); 
+                var candidate = _playersPool.First();
                 ActivatePlayer(candidate);
                 _lastPlayer.Deactivate();
             }
@@ -93,13 +96,16 @@ namespace PlayerEssentials
         private void FixedUpdate()
         {
             var snapshots = _activePlayer.GetComponent<SnapshotRecorder>();
-            if (_playersPool.Count > 1 && canUpdatePlayers)
+            if (_playersPool.Count > 1)
                 for (int i = 1; i < _playersPool.Count; i++)
                 {
                     var player = _playersPool[i];
-                    player.transform.position = snapshots.Partial(1 - 1f * i / _playersPool.Count);
+                    var snap = snapshots.Partial(1 - 1f * i / _playersPool.Count);
+                    player.transform.position = snap.Position;
+                    player.TryFlip(snap);
+                    // todo: animator state change
                 }
-        } 
+        }
 
         private void GeneratePlayer(float tOffset)
         {

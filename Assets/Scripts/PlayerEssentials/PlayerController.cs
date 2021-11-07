@@ -8,10 +8,11 @@ namespace PlayerEssentials
     public class PlayerController : MonoBehaviour
     {
         public UnityEvent<PlayerController> Die;
-
+        private CharacterController2D _characterController;
         private void Start()
         {
             Die ??= new UnityEvent<PlayerController>();
+            _characterController = GetComponent<CharacterController2D>();
         }
 
         private void OnCollisionEnter2D(Collision2D other)
@@ -40,6 +41,12 @@ namespace PlayerEssentials
             GetComponent<PlayerMovement>().isControlled = false;
             // TODO: change sprite
             this.gameObject.SetActive(false);
+        }
+
+        public void TryFlip(Snapshot snap)
+        { 
+            if (_characterController.facingRight != snap.FacingRight)
+                _characterController.Flip();
         }
     }
 }
