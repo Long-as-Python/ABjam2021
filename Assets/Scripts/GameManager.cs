@@ -44,4 +44,9 @@ public class GameManager : MonoBehaviour
     {
         eventPublisher.OnGameExit();
     }
+
+    public void PauseGame()
+    {
+        eventPublisher.OnGamePause();
+    }
 }

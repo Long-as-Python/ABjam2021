@@ -9,6 +9,7 @@ namespace UI
     {
         private GameManager gameManager;
         private IEventPublisher events;
+        public GameObject PauseMenu;
 
         private void Start()
         {
@@ -33,5 +34,14 @@ namespace UI
             events.OnButtonClick();
             gameManager.ExitGame();
         }
+
+        public void PauseClick()
+        {
+            //events.OnButtonClick();
+            //gameManager.PauseGame();
+            if (PauseMenu.active == true) PauseMenu.SetActive(false);
+            else PauseMenu.SetActive(true);
+        }
+
     }
 }
