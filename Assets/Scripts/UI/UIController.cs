@@ -10,6 +10,7 @@ namespace UI
         private GameManager gameManager;
         private IEventPublisher events;
         public GameObject PauseMenu;
+        public GameObject MainMenu;
 
         private void Start()
         {
@@ -18,7 +19,7 @@ namespace UI
             events = root.GetComponent<EventManager>();
         }
 
-        void GameStartClick()
+        public void GameStartClick()
         {
             events.OnButtonClick();
             gameManager.StartGame();
