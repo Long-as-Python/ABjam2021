@@ -39,9 +39,15 @@ namespace Events
             ButtonClick.Invoke();
         }
 
+        public void OnGamePause()
+        {
+            GamePause.Invoke();
+        }
+
         public UnityEvent GameExit = new UnityEvent();
         public UnityEvent PlayerJump = new UnityEvent();
         public UnityEvent ButtonClick = new UnityEvent();
+        public UnityEvent GamePause = new UnityEvent();
         public UnityEvent PlayerShoot = new UnityEvent();
         public UnityEvent GameStart = new UnityEvent();
         public UnityEvent GameRestart = new UnityEvent();

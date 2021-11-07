@@ -11,5 +11,6 @@
         void OnGameRestart();
         void OnGameExit();
         void OnButtonClick();
+        void OnGamePause();
     }
 }
