@@ -18,7 +18,7 @@ public class Dagger : MonoBehaviour
 
     private void Rotate()
     {
-        transform.Rotate(Vector3.forward, speed);
+        transform.Rotate(Vector3.forward, speed * Time.deltaTime);
     }
 
     public void MoveLeft()
