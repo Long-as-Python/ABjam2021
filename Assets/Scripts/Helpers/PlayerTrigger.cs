@@ -1,7 +1,8 @@
+using PlayerEssentials;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace PlayerEssentials
+namespace Helpers
 {
     public class PlayerTrigger : MonoBehaviour
     {
