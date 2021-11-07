@@ -31,7 +31,7 @@ namespace Audio
 
         public void OnGameStart()
         {
-            //mixer.FindSnapshot("OnGameStart").TransitionTo(0.5f);
+            mixer.FindSnapshot("GameStart").TransitionTo(0.5f);
         }
 
         public void OnGameRestart()

@@ -2520,6 +2520,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2002166416510908685, guid: 1fef7293cdbfe0743a0960dfb5029eeb, type: 3}
+      propertyPath: mixer
+      value: 
+      objectReference: {fileID: 24100000, guid: fb538f094847903468e05a235e806189, type: 2}
     - target: {fileID: 2002166416510908687, guid: 1fef7293cdbfe0743a0960dfb5029eeb, type: 3}
       propertyPath: m_Name
       value: GameRoot
