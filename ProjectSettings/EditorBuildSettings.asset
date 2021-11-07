@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/PlayerMovementTest.unity
+    guid: 7b37faec70927b04c8d9c28f7c8b952e
   m_configObjects: {}

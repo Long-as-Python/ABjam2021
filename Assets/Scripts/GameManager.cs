@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
         eventManager.GameRestart.AddListener(audioController.OnGameRestart);
         eventManager.ButtonClick.AddListener(audioController.ButtonClick);
         eventManager.ButtonClick.AddListener(FindObjectOfType<ChunkController>().StartGame);
+        eventManager.ButtonClick.AddListener(FindObjectOfType<PlayerPool>().StartGame);
     }
 
     public void StartGame()

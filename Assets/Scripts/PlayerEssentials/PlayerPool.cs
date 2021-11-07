@@ -28,13 +28,13 @@ namespace PlayerEssentials
         private void Awake()
         {
             gameManager = GameObject.Find("GameRoot").GetComponent<GameManager>();
-        }
-
-        private void Start()
-        {
             _playersPool = new List<PlayerController>();
 
             _playerPrefabs = Resources.LoadAll<PlayerController>("Players").ToList();
+        }
+
+        public void StartGame()
+        {
 
             while (_playersPool.Count < MaxPlayersInPool)
             {

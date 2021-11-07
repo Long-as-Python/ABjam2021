@@ -17,8 +17,7 @@ namespace PlayerEssentials
             _characterController = GetComponent<CharacterController2D>();
             _animator = GetComponent<Animator>();
         }
-
-        private void OnCollisionEnter2D(Collision2D other)
+        private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.gameObject.TryGetComponent<Obstacle>(out var obstacle))
             {

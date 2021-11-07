@@ -13,12 +13,13 @@ namespace Obstacles
         {
             if (!immortal)
                 isActiveObstacle = false;
-            if (TryGetComponent<Animator>(out var animator))
+
+            var bodies = GetComponentsInChildren<Rigidbody2D>();
+            foreach (var item in bodies)
             {
-                animator.SetTrigger("on_hit");
-            }
-            // TODO: deactivate sprite 
-            // this.gameObject.SetActive(false);
+                item.isKinematic = true;
+                item.bodyType = RigidbodyType2D.Dynamic;
+            } 
         }
     }
 }
