@@ -1,3 +1,5 @@
+using Obstacles;
+using PlayerEssentials;
 using UnityEngine;
 
 public class Dagger : MonoBehaviour
@@ -5,11 +7,6 @@ public class Dagger : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float force;
     private bool rotate = true;
-
-    private void Start()
-    {
-        //MoveRight();
-    }
 
     private void Update()
     {
@@ -37,5 +34,21 @@ public class Dagger : MonoBehaviour
     {
         var rb = GetComponent<Rigidbody2D>();
         rb.velocity = v * force;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.TryGetComponent<Obstacle>(out var obs))
+        {
+            obs.Deactivate();
+            Destroy(gameObject);
+        }
+        else if (collision.gameObject.TryGetComponent<CharacterController2D>(out var player) == false
+            && collision.gameObject.TryGetComponent<Dagger>(out var dagger) == false)
+        {
+            rotate = false;
+            var rb = GetComponent<Rigidbody2D>();
+            rb.velocity = Vector3.zero;
+        }
     }
 }

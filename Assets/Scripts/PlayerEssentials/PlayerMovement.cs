@@ -57,6 +57,11 @@ namespace PlayerEssentials
             {
                 _animator.SetTrigger("player_landing");
             }
+
+            if(Input.GetKeyDown(KeyCode.K))
+            {
+                controller.Fire();
+            }
         }
 
         void FixedUpdate()

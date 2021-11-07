@@ -42,6 +42,9 @@ namespace PlayerEssentials
         public BoolEvent OnCrouchEvent;
         private bool m_wasCrouching = false;
 
+        [SerializeField] private Transform firePoint;
+        [SerializeField] private GameObject daggerPrefab;
+
         private void Awake()
         {
             m_Rigidbody2D = GetComponent<Rigidbody2D>();
@@ -157,6 +160,15 @@ namespace PlayerEssentials
             m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
         }
 
+        public void Fire()
+        {
+            var dagger = Instantiate(daggerPrefab).GetComponent<Dagger>();
+            dagger.transform.position = firePoint.position;
+            if (facingRight)
+                dagger.MoveRight();
+            else
+                dagger.MoveLeft();
+        }
         public void Flip()
         {
             // Switch the way the player is labelled as facing.
