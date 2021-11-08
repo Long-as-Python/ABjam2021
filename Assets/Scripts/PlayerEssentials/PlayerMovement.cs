@@ -1,4 +1,5 @@
 using System;
+using Events;
 using UnityEngine;
 
 namespace PlayerEssentials
@@ -14,12 +15,16 @@ namespace PlayerEssentials
         private Rigidbody2D _rigidBody;
         private Animator _animator;
         private CharacterController2D _controller;
+        private IEventPublisher _events;
 
         private void Awake()
         {
             _rigidBody = GetComponent<Rigidbody2D>();
             _animator = GetComponent<Animator>();
             _controller = GetComponent<CharacterController2D>();
+            
+            var root = GameObject.Find("GameRoot");
+            _events = root.GetComponent<EventManager>();
         }
 
         void Update()
@@ -42,6 +47,7 @@ namespace PlayerEssentials
                 _rigidBody.isKinematic = false;
                 jump = true;
                 _animator.SetTrigger("player_jump");
+                _events.OnPlayerJump();
             }
 
             if (Input.GetButtonDown("Crouch"))
@@ -61,6 +67,7 @@ namespace PlayerEssentials
             if (Input.GetKeyDown(KeyCode.K))
             {
                 _controller.Fire();
+                _events.OnPlayerShoot();
             }
         }
 

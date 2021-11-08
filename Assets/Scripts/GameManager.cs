@@ -29,11 +29,13 @@ public class GameManager : MonoBehaviour
         eventManager.GameRestart.AddListener(audioController.OnGameRestart);
         eventManager.ButtonClick.AddListener(audioController.ButtonClick);
     }
+
     private void Start()
     {
         chunksPool = FindObjectOfType<ChunkController>();
         playerPool = FindObjectOfType<PlayerPool>();
     }
+
     public void StartGame()
     {
         chunksPool.StartGame();
@@ -64,6 +66,9 @@ public class GameManager : MonoBehaviour
         eventPublisher.OnGameExit();
 
         Application.Quit();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
     }
 
     public void PauseGame()

@@ -1,4 +1,5 @@
 ﻿using System;
+using Events;
 using Obstacles;
 using UnityEngine;
 using UnityEngine.Events;
@@ -10,6 +11,8 @@ namespace PlayerEssentials
         public UnityEvent<PlayerController> Die;
         private CharacterController2D _characterController;
         private Animator _animator;
+        private bool playerDied;
+        private IEventPublisher _events;
         public bool isGrounded => _characterController.isGrounded;
 
         private void Awake()
@@ -17,20 +20,26 @@ namespace PlayerEssentials
             Die ??= new UnityEvent<PlayerController>();
             _characterController = GetComponent<CharacterController2D>();
             _animator = GetComponent<Animator>();
+            var root = GameObject.Find("GameRoot");
+            _events = root.GetComponent<EventManager>();
         }
+
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.gameObject.TryGetComponent<Obstacle>(out var obstacle))
             {
-                if (!obstacle.isActiveObstacle) return;
-                obstacle.Deactivate();
-                Debug.Log("player dies");
+                if (!obstacle.isActiveObstacle || playerDied) return;
                 OnDie();
+                obstacle.Deactivate();
+                playerDied = true;
+                Debug.Log("player dies");
             }
         }
 
         private void OnDie()
         {
+            if (playerDied) return;
+            _events.OnPlayerDie();
             _animator.SetTrigger("player_die");
             Die.Invoke(this);
         }
@@ -44,7 +53,7 @@ namespace PlayerEssentials
         {
             GetComponent<PlayerMovement>().isControlled = false;
             // TODO: change sprite
-            
+
             // this.gameObject.SetActive(false);
         }
 
@@ -54,7 +63,7 @@ namespace PlayerEssentials
                 if (_characterController.facingRight != snap.FacingRight)
                     _characterController.Flip();
             transform.position = snap.Position;
-            _animator.Play(snap.AnimatorState); 
+            _animator.Play(snap.AnimatorState);
         }
     }
 }
