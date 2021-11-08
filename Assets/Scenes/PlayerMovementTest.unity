@@ -678,6 +678,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!82 &932430803 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7768177378162650662, guid: 1fef7293cdbfe0743a0960dfb5029eeb, type: 3}
+  m_PrefabInstance: {fileID: 2002166414956487651}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &949507089 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7129026833292672014, guid: 1fef7293cdbfe0743a0960dfb5029eeb, type: 3}
+  m_PrefabInstance: {fileID: 2002166414956487651}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &996972010 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7509297698068465486, guid: 1fef7293cdbfe0743a0960dfb5029eeb, type: 3}
+  m_PrefabInstance: {fileID: 2002166414956487651}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1038344669
 GameObject:
   m_ObjectHideFlags: 3
@@ -1155,6 +1170,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!82 &1774205016 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4055214870724696469, guid: 1fef7293cdbfe0743a0960dfb5029eeb, type: 3}
+  m_PrefabInstance: {fileID: 2002166414956487651}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1891706022
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1307,6 +1327,22 @@ PrefabInstance:
       propertyPath: mixer
       value: 
       objectReference: {fileID: 24100000, guid: fb538f094847903468e05a235e806189, type: 2}
+    - target: {fileID: 2002166416510908685, guid: 1fef7293cdbfe0743a0960dfb5029eeb, type: 3}
+      propertyPath: playerDieSource
+      value: 
+      objectReference: {fileID: 949507089}
+    - target: {fileID: 2002166416510908685, guid: 1fef7293cdbfe0743a0960dfb5029eeb, type: 3}
+      propertyPath: playerJumpSource
+      value: 
+      objectReference: {fileID: 1774205016}
+    - target: {fileID: 2002166416510908685, guid: 1fef7293cdbfe0743a0960dfb5029eeb, type: 3}
+      propertyPath: buttonClickSource
+      value: 
+      objectReference: {fileID: 932430803}
+    - target: {fileID: 2002166416510908685, guid: 1fef7293cdbfe0743a0960dfb5029eeb, type: 3}
+      propertyPath: playerShootSource
+      value: 
+      objectReference: {fileID: 996972010}
     - target: {fileID: 2002166416510908687, guid: 1fef7293cdbfe0743a0960dfb5029eeb, type: 3}
       propertyPath: m_Name
       value: GameRoot
@@ -1353,6 +1389,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2002166416510908691, guid: 1fef7293cdbfe0743a0960dfb5029eeb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4055214870724696469, guid: 1fef7293cdbfe0743a0960dfb5029eeb, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 7769b072b23283a4baf28d4c20875f86, type: 3}
+    - target: {fileID: 4055214870724696469, guid: 1fef7293cdbfe0743a0960dfb5029eeb, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7129026833292672014, guid: 1fef7293cdbfe0743a0960dfb5029eeb, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7509297698068465486, guid: 1fef7293cdbfe0743a0960dfb5029eeb, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 9e55e58bddc8ad94a82610c5feab551a, type: 3}
+    - target: {fileID: 7509297698068465486, guid: 1fef7293cdbfe0743a0960dfb5029eeb, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768177378162650662, guid: 1fef7293cdbfe0743a0960dfb5029eeb, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 5cd6a54c0f5f6a744adcd10218ab58e9, type: 3}
+    - target: {fileID: 7768177378162650662, guid: 1fef7293cdbfe0743a0960dfb5029eeb, type: 3}
+      propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
