@@ -5,8 +5,6 @@ namespace PlayerEssentials
 {
     public class PlayerMovement : MonoBehaviour
     {
-        public CharacterController2D controller;
-
         public float runSpeed = 40f;
 
         float horizontalMove = 0f;
@@ -15,11 +13,13 @@ namespace PlayerEssentials
         public bool isControlled;
         private Rigidbody2D _rigidBody;
         private Animator _animator;
+        private CharacterController2D _controller;
 
         private void Awake()
         {
             _rigidBody = GetComponent<Rigidbody2D>();
             _animator = GetComponent<Animator>();
+            _controller = GetComponent<CharacterController2D>();
         }
 
         void Update()
@@ -53,21 +53,21 @@ namespace PlayerEssentials
                 crouch = false;
             }
 
-            if (_rigidBody.velocity.y < 0)
+            if (!_controller.isGrounded && _rigidBody.velocity.y < 0)
             {
                 _animator.SetTrigger("player_landing");
             }
 
-            if(Input.GetKeyDown(KeyCode.K))
+            if (Input.GetKeyDown(KeyCode.K))
             {
-                controller.Fire();
+                _controller.Fire();
             }
         }
 
         void FixedUpdate()
         {
             // Move our character
-            controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
+            _controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
             jump = false;
         }
     }

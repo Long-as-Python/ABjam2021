@@ -10,6 +10,7 @@ namespace PlayerEssentials
         public UnityEvent<PlayerController> Die;
         private CharacterController2D _characterController;
         private Animator _animator;
+        public bool isGrounded => _characterController.isGrounded;
 
         private void Awake()
         {
@@ -43,14 +44,17 @@ namespace PlayerEssentials
         {
             GetComponent<PlayerMovement>().isControlled = false;
             // TODO: change sprite
-            this.gameObject.SetActive(false);
+            
+            // this.gameObject.SetActive(false);
         }
 
-        public void TryFlip(Snapshot snap)
+        public void ApplySnapshot(Snapshot snap)
         {
             if (_characterController)
                 if (_characterController.facingRight != snap.FacingRight)
                     _characterController.Flip();
+            transform.position = snap.Position;
+            _animator.Play(snap.AnimatorState); 
         }
     }
 }

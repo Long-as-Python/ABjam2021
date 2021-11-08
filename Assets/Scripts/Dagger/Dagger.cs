@@ -1,3 +1,4 @@
+using System;
 using Obstacles;
 using PlayerEssentials;
 using UnityEngine;
@@ -37,14 +38,14 @@ public class Dagger : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
-    {
+    { 
         if (collision.gameObject.TryGetComponent<Obstacle>(out var obs))
         {
             obs.Deactivate();
             Destroy(gameObject);
         }
-        else if (collision.gameObject.TryGetComponent<CharacterController2D>(out var player) == false
-            && collision.gameObject.TryGetComponent<Dagger>(out var dagger) == false)
+        else if (!collision.gameObject.TryGetComponent<CharacterController2D>(out var player)
+            && !collision.gameObject.TryGetComponent<Dagger>(out var dagger))
         {
             rotate = false;
             var rb = GetComponent<Rigidbody2D>();

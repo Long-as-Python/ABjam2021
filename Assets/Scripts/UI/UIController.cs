@@ -44,7 +44,7 @@ namespace UI
         public void LeaveGameClick()
         {
             events.OnButtonClick();
-            gameManager.ExitGame();
+            gameManager.ToMainMenu();
             MainMenu.SetActive(true);
             PauseMenu.SetActive(false);
         }

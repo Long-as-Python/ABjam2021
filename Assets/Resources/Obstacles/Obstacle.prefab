@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4838864696058617327}
   - component: {fileID: 5950371182912252212}
   - component: {fileID: 2976860157203630095}
-  - component: {fileID: 8625308131731109754}
+  - component: {fileID: 1158021505264850162}
   m_Layer: 0
   m_Name: obsticle_01_1
   m_TagString: Untagged
@@ -104,9 +104,9 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
---- !u!61 &8625308131731109754
-BoxCollider2D:
+  m_Constraints: 0
+--- !u!70 &1158021505264850162
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -119,18 +119,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.72, y: 1.28}
-    newSize: {x: 0.72, y: 1.28}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
   m_Size: {x: 0.72, y: 1.28}
-  m_EdgeRadius: 0
+  m_Direction: 0
 --- !u!1 &4863332846413044495
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,7 +168,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c8854fcbe71ce244823f96d960e9ed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  immortal: 0
 --- !u!61 &2371527060888637250
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -265,7 +254,7 @@ GameObject:
   - component: {fileID: 8636354471440493684}
   - component: {fileID: 6956766725596779309}
   - component: {fileID: 3759309313793247575}
-  - component: {fileID: 8661292993316954325}
+  - component: {fileID: 1360896370816516856}
   m_Layer: 0
   m_Name: obsticle_01_2
   m_TagString: Untagged
@@ -358,9 +347,9 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
---- !u!61 &8661292993316954325
-BoxCollider2D:
+  m_Constraints: 0
+--- !u!58 &1360896370816516856
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -373,15 +362,5 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.92, y: 0.89}
-    newSize: {x: 0.92, y: 0.89}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.92, y: 0.89}
-  m_EdgeRadius: 0
+  m_Radius: 0.30842137

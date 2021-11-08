@@ -24,6 +24,8 @@ namespace Generation
 
         public void StartGame()
         {
+            ResetPool();
+
             // fill pool with chunks
             while (currentChunks.Count < maxLoadedChunksCount)
             {
@@ -31,6 +33,20 @@ namespace Generation
             }
             // move view to the center of the pool
             transform.position = transform.position - currentChunks[currentChunks.Count / 2].EndPoint.position;
+        }
+
+        public void ResetPool()
+        {
+            if (currentChunks.Any())
+            {
+                currentChunks.ForEach(GameObject.Destroy);
+                currentChunks.Clear();
+                // ensure everything destroyed
+                foreach (Transform child in transform)
+                {
+                    GameObject.Destroy(child.gameObject);
+                }
+            }
         }
 
         private void LoadChunk(Chunk chunk)

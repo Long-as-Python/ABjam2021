@@ -1056,7 +1056,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cineCamera: {fileID: 1208894982}
-  MaxPlayersInPool: 10
+  MaxPlayersInPool: 3
 --- !u!1 &1753136673
 GameObject:
   m_ObjectHideFlags: 0

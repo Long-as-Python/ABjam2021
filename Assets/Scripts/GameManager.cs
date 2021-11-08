@@ -3,6 +3,8 @@ using Events;
 using PlayerEssentials;
 using UnityEngine;
 using Generation;
+using System;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,6 +12,8 @@ public class GameManager : MonoBehaviour
     private EventManager eventManager;
     private IEventPublisher eventPublisher;
     public GameManager Instance { get; private set; }
+    private ChunkController chunksPool;
+    private PlayerPool playerPool;
 
     private void Awake()
     {
@@ -24,18 +28,23 @@ public class GameManager : MonoBehaviour
         eventManager.PlayerShoot.AddListener(audioController.OnPlayerShoot);
         eventManager.GameRestart.AddListener(audioController.OnGameRestart);
         eventManager.ButtonClick.AddListener(audioController.ButtonClick);
-        eventManager.ButtonClick.AddListener(FindObjectOfType<ChunkController>().StartGame);
-        eventManager.ButtonClick.AddListener(FindObjectOfType<PlayerPool>().StartGame);
     }
-
+    private void Start()
+    {
+        chunksPool = FindObjectOfType<ChunkController>();
+        playerPool = FindObjectOfType<PlayerPool>();
+    }
     public void StartGame()
     {
+        chunksPool.StartGame();
+        playerPool.StartGame();
         eventPublisher.OnGameStart();
     }
 
     public void RestartGame()
     {
         eventPublisher.OnGameRestart();
+        StartGame();
     }
 
     public void OnPlayerDie(PlayerController arg0)
@@ -43,9 +52,18 @@ public class GameManager : MonoBehaviour
         eventPublisher.OnPlayerDie();
     }
 
+    public void ToMainMenu()
+    {
+        chunksPool.ResetPool();
+        playerPool.ResetPool();
+        eventPublisher.OnGameExit();
+    }
+
     public void ExitGame()
     {
         eventPublisher.OnGameExit();
+
+        Application.Quit();
     }
 
     public void PauseGame()

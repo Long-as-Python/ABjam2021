@@ -27,14 +27,29 @@ namespace PlayerEssentials
 
         private void Awake()
         {
-            gameManager = GameObject.Find("GameRoot").GetComponent<GameManager>();
             _playersPool = new List<PlayerController>();
+
+            gameManager = GameObject.Find("GameRoot").GetComponent<GameManager>();
 
             _playerPrefabs = Resources.LoadAll<PlayerController>("Players").ToList();
         }
 
+        public void ResetPool()
+        {
+            if (!_playersPool.Any()) return;
+
+            _playersPool.ForEach(x => GameObject.Destroy(x.gameObject));
+            _playersPool.Clear();
+            // ensure everything destroyed
+            foreach (Transform child in transform)
+            {
+                GameObject.Destroy(child.gameObject);
+            }
+        }
+
         public void StartGame()
         {
+            ResetPool();
 
             while (_playersPool.Count < MaxPlayersInPool)
             {
@@ -48,72 +63,49 @@ namespace PlayerEssentials
         {
             _activePlayer = player;
             cineCamera.Follow = _activePlayer.transform;
-            // var camera = Camera.main;
-            // camera.transform.SetParent(_activePlayer.transform, true);
-            //SetCameraTargetDynamic();
-            _freezeCamera = true;
-            //StartCoroutine(LerpFromTo(camera.transform, camera.transform.position, 1));
             player.ActivateControl();
         }
-
-        private void SetCameraTargetDynamic()
-        {
-            var targetPos = _activePlayer.transform.position;
-            var camera = Camera.main;
-            _cameraTarget = new Vector3(targetPos.x, targetPos.y, camera.transform.position.z);
-        }
-
-        IEnumerator LerpFromTo(Transform target, Vector3 pos1, float duration)
-        {
-            _freezeCamera = false;
-            for (float t = 0f; t < duration; t += Time.deltaTime)
-            {
-                SetCameraTargetDynamic();
-                target.position = Vector3.Lerp(pos1, _cameraTarget, t / duration);
-                yield return null;
-                if (_freezeCamera) yield break;
-            }
-
-            target.position = _cameraTarget;
-            canUpdatePlayers = true;
-        }
-
 
         void ChangeToNextPlayer(PlayerController whoDied)
         {
             // only if our hero dies
-            if (whoDied == _activePlayer)
+            if (whoDied != _activePlayer) return;
+
+            canUpdatePlayers = false;
+            _lastPlayer = _playersPool.First();
+
+            // last player died
+            if (_playersPool.Count == 1)
             {
-                canUpdatePlayers = false;
-                _lastPlayer = _playersPool.First();
-                _playersPool.RemoveAt(0);
-                // GeneratePlayer(1);
-                var candidate = _playersPool.First();
-                ActivatePlayer(candidate);
-                _lastPlayer.Deactivate();
+                gameManager.RestartGame();
+                return;
             }
 
-            // TODO:  animate transition
+            _playersPool.RemoveAt(0);
+            var candidate = _playersPool.First();
+            ActivatePlayer(candidate);
+            _lastPlayer.Deactivate();
         }
 
         private void FixedUpdate()
         {
+            if (!_activePlayer) return;
             var snapshots = _activePlayer.GetComponent<SnapshotRecorder>();
-            if (_playersPool.Count > 1)
-                for (int i = 1; i < _playersPool.Count; i++)
-                {
-                    var player = _playersPool[i];
-                    var snap = snapshots.Partial(1 - 1f * i / _playersPool.Count);
-                    player.transform.position = snap.Position;
-                    player.TryFlip(snap);
-                    // todo: animator state change
-                }
+            if (_playersPool.Count <= 1) return;
+
+            for (var i = 1; i < _playersPool.Count; i++)
+            {
+                var player = _playersPool[i];
+                var partial = snapshots.Partial(1 - 1f * i / _playersPool.Count);
+                var snap = partial;
+                player.ApplySnapshot(snap);
+            }
         }
 
         private void GeneratePlayer(float tOffset)
         {
             var prefab = _playerPrefabs.Random();
-            var chainOffset = tOffset * Vector3.left * 1;
+            var chainOffset = tOffset * Vector3.left * 3;
             var player = Instantiate(prefab, prefab.transform.position + transform.position + chainOffset,
                 Quaternion.identity);
             player.transform.parent = this.transform;
